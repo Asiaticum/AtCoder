@@ -1,0 +1,8 @@
+{
+    "editor.suggest.showInterfaces": false,
+    "files.associations": {
+        "iostream": "cpp",
+        "*.tpl": "html",
+        "*.tcc": "cpp"
+    },
+}
