@@ -32,13 +32,8 @@ int main() {
     cin >> a >> b >> x;
 
     ll diff;
-    if (a % x == 0) {
-        diff = b - a + 1;
-    } else {
-        diff = b - a;
-    }
 
-    ll ans = round_up(diff, x);
+    ll ans = b / x - round_up(a, x) + 1;
 
     cout << ans << endl;
 
