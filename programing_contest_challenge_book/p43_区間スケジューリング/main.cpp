@@ -21,6 +21,10 @@ bool chmin(T &a, const T &b) {
     return 0;
 }
 
+/*
+https://atcoder.jp/contests/keyence2020/tasks/keyence2020_b
+*/
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -29,12 +33,25 @@ int main() {
     int N;
     cin >> N;
 
-    vector<int> X(N), L(N);
+    vector<pair<int, int>> P(N);
     for (int i = 0; i < N; i++) {
-        cin >> X.at(i);
-        cin >> L.at(i);
+        int center, len;
+        cin >> center >> len;
+        P.at(i).first = center + len;
+        P.at(i).second = center - len;
     }
 
+    sort(P.begin(), P.end());
+    int end = -INF;
+    int counter = 0;
+    for (auto p : P) {
+        if (p.second >= end) {
+            end = p.first;
+            counter++;
+        }
+    }
+
+    cout << counter << endl;
 
     return 0;
 }
