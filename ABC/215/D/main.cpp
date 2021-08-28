@@ -61,7 +61,7 @@ int main() {
 
     for (int p : prime) {
         for (int j = p + p; j < M + 1; j += p) {
-            k.at(j) = k.at(j) & k.at(p);
+            k.at(j) = false;
         }
     }
 

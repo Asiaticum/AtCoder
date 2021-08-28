@@ -21,30 +21,14 @@ bool chmin(T &a, const T &b) {
     return 0;
 }
 
-int N, weight;
-vector<int> V, W;
-vector<vector<int>> dp(101, vector<int>(10001, -1));
-
-int rec(int i, int j) {
-    if (dp.at(i).at(j) >= 0) {
-        return dp.at(i).at(j);
-    }
-    int res;
-    if (i == N) {
-        res = 0;
-    } else if (j < W.at(i)) {
-        res = rec(i + 1, j);  // i番目の荷物を積めない場合の返り値
-    } else {
-        res = max(rec(i + 1, j), rec(i + 1, j - W.at(i)) + V.at(i));
-    }
-    dp.at(i).at(j) = res;
-    return dp.at(i).at(j);
-}
-
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
+
+    int N, weight;
+    vector<int> V, W;
+    vector<vector<int>> dp(101, vector<int>(10001, 0));
 
     cin >> N >> weight;
     V.resize(N + 1);
@@ -54,7 +38,22 @@ int main() {
         cin >> V.at(i) >> W.at(i);
     }
 
-    cout << rec(0, weight) << endl;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < weight + 1; j++) {
+            if (j - W.at(i) >= 0) {
+                dp.at(i + 1).at(j) = max(dp.at(i).at(j - W.at(i)) + V.at(i), dp.at(i).at(j));
+            } else {
+                dp.at(i + 1).at(j) = dp.at(i).at(j);
+            }
+        }
+    }
+
+    int ans = 0;
+    for (int i = 0; i < weight + 1; i++) {
+        ans = max(ans, dp.at(N).at(i));
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

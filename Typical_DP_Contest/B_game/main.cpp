@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-const int INF = 1e9;
+const int INF = 1e8;
 const int MOD = 1e9 + 7;
-const ll LINF = 1e18;
+const ll LINF = 1e17;
 template <class T>
 bool chmax(T &a, const T &b) {
     if (a < b) {
@@ -21,22 +21,35 @@ bool chmin(T &a, const T &b) {
     return 0;
 }
 
-ll round_up(ll a, ll x) { return (a + x - 1) / x; }
+int A, B;
+vector<int> a(A), b(B);
+int score = 0;
+
+int game(int i, int j) {
+    if (i == a.size() - 1 && j == b.size() - 1) {
+        return max(a.at(i), b.at(i));
+    }
+
+    if (i == a.size() - 1) {
+        /* code */
+    }
+}
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
 
-    ll a, b, x;
-    cin >> a >> b >> x;
+    cin >> A >> B;
 
-    ll diff;
+    for (int i = 0; i < A; i++) {
+        cin >> a.at(i);
+    }
 
-    ll ans = b / x - round_up(a, x) + 1;
-    ans = 1;
+    for (int i = 0; i < B; i++) {
+        cin >> b.at(i);
+    }
 
-    cout << ans << endl;
 
     return 0;
 }
